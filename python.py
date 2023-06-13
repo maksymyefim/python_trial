@@ -31,6 +31,9 @@ def win_check(board, mark):
     )
 
 import random
+import itertools
+player = ["Player 1", "Player 2"]
+player_iterator = itertools.cycle(player)
 
 def choose_first():
     player = random.randint(1, 2)
@@ -38,6 +41,7 @@ def choose_first():
         return "Player 1"
     else:
         return "Player 2"
+
 
 def space_check(board, position):
     if board[position]!=' ':
