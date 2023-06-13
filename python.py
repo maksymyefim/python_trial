@@ -11,7 +11,6 @@ def player_input():
     player1 = marker
     player2 = "O" if player1 == "X" else "X"
     return player1, player2
-    return(player1,player2)
 player1_marker, player2_marker = player_input()
 print("Player1 is: ", player1_marker)
 print("Player2 is: ", player2_marker)
@@ -67,21 +66,31 @@ def replay():
 print('Welcome to Tic Tac Toe!')
 
 while True:
-    board = [' ']*10
+    board = [' '] * 10
     player1_marker, player2_marker = player_input()
     turn = choose_first()
-    print(turn +  "Goes first")
+    print(turn + " goes first")
     play_game = input("Are you ready to play? y or n")
-    if play_game[0].lower == "y":
+    if play_game[0].lower() == "y":
         game_on = True
     else:
         game_on = False
     while game_on:
-        if turn == 1:
+        if turn == "Player 1":
             display_board(board)
             player_choice(board, player1_marker)
-        else:
-            display_board(test)
-
-
-
+            if win_check(board, player1_marker):
+                display_board(board)
+                print("Congratulations! Player 1 wins!")
+                game_on = False
+            elif full_board_check(board):
+                display
+        if turn == "Player 2":
+            display_board(board)
+            player_choice(board, player2_marker)
+            if win_check(board, player2_marker):
+                display_board(board)
+                print("Congratulations! Player 2 wins!")
+                game_on = False
+            elif full_board_check(board):
+                display
