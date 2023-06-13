@@ -20,15 +20,16 @@ def place_marker(board, marker, position):
     board[position] = marker
 
 def win_check(board, mark):
-    (board[1]==board[2]==board[3]==mark) or \
-    (board[4]==board[5]==board[6]==mark) or \
-    (board[7]==board[8]==board[9]==mark) or \
-    (board[1]==board[4]==board[7]==mark) or \
-    (board[2]==board[5]==board[8]==mark) or \
-    (board[3]==board[6]==board[9]==mark) or \
-    (board[1]==board[5]==board[9]==mark) or \
-    (board[3]==board[5]==board[7]==mark)
-    return True
+    return (
+        (board[1]==board[2]==board[3]==mark) or
+        (board[4]==board[5]==board[6]==mark) or
+        (board[7]==board[8]==board[9]==mark) or
+        (board[1]==board[4]==board[7]==mark) or
+        (board[2]==board[5]==board[8]==mark) or
+        (board[3]==board[6]==board[9]==mark) or
+        (board[1]==board[5]==board[9]==mark) or
+        (board[3]==board[5]==board[7]==mark)
+    )
 
 import random
 
@@ -47,9 +48,9 @@ def full_board_check(board):
     for i in range(1,10):
         if space_check(board, i):
             return False
-        return True
+    return True
 
-def player_choice(board):
+def player_choice(board, marker):
     position = int(input("Make yor next move"))
     while space_check(board, position) is True or position not in range(1,10):
         return "This position is taken, please choose another one"
@@ -76,8 +77,11 @@ while True:
     else:
         game_on = False
     while game_on:
-        if turn == "Player 1":
+        if turn == 1:
             display_board(board)
+            player_choice(board, player1_marker)
+        else:
+            display_board(test)
 
 
 
