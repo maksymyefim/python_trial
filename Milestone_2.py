@@ -124,3 +124,55 @@ def dealer_wins(player, dealer, chips):
 
 def push(player, dealer):
     print("It's push!")
+
+while True:
+    print("The game is on!")
+    deck = Deck()
+    deck.shuffle()
+
+    player_hand = Hand()
+    player_hand.add_card(deck.deal())
+    player_hand.add_card(deck.deal())
+
+    dealer_hand = Hand()
+    dealer_hand.add_card(deck.deal())
+    dealer_hand.add_card(deck.deal())
+
+    player_chips = Chips()
+    take_bet(player_chips)
+
+    dealer_chips = Chips()
+    take_bet(dealer_chips)
+
+    show_some(player_hand,dealer_hand)
+
+    while playing:
+        hit_or_stand(deck,player_hand)
+        show_some(player_hand,dealer_hand)
+        if player_hand.values > 21:
+            player_busts(player_hand,dealer_hand,player_chips)
+        break
+        if player_hand.values <= 21:
+            while dealer_hand.values < 17:
+                hit_or_stand(deck,dealer_hand)
+                show_all(player_hand,dealer_hand)
+            if dealer_hand.values > 21:
+                dealer_busts(player_hand,dealer_hand,player_chips)
+            elif player_hand.values > dealer_hand.values:
+                player_wins(player_hand, dealer_hand, chips)
+            elif player_hand.values < dealer_hand.values:
+                dealer_wins(player_hand, dealer_hand, chips)
+            else:
+                push(player_hand, dealer_hand)
+        print("Player chips: ",player_chips.total)
+        print("Dealer chips: ",dealer_chips.total)
+        status = input("Would you like to play again? Type 'Yes' or 'No'")
+        if status[0].lower() == "y":
+            print("Playing again")
+            playing = True
+            continue
+        else:
+            print("Good bye")
+            break
+
+
