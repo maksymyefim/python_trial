@@ -171,7 +171,7 @@ while True:
             print("Playing again")
             playing = True
             continue
-        else:
+
             print("Good bye")
             break
 

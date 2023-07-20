@@ -14,8 +14,8 @@ class Line:
         x2,y2 = self.coor2
 
         return (y2-y1)/(x2-x1)
-c1 = (3,2)
-c2 = (8,10)
+c1 = tuple(map(int, input("Type in coordinates 1 (comma-separated): ").split(',')))
+c2 = tuple(map(int, input("Type in coordinates 2 (comma-separated): ").split(',')))
 
 myline = Line(c1, c2)
 
